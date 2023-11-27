@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+    
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter your annual electricity usage in kWh: ");
+        double electricityUsage = scanner.nextDouble();
+
+        System.out.print("Enter your annual petrol consumption in liters: ");
+        double petrolConsumption = scanner.nextDouble();
+
+        System.out.print("Enter your annual LPG consumption in kg: ");
+        double lpgConsumption = scanner.nextDouble();
+        
+        final double ELECTRICITY_EMISSION_FACTOR = 0.81; // kg CO2 per kWh
+        final double PETROL_EMISSION_FACTOR = 3.30; // kg CO2 per liter
+        final double LPG_EMISSION_FACTOR = 3.01; // kg CO2 per kg
+
+        double electricityEmission = electricityUsage * ELECTRICITY_EMISSION_FACTOR;
+        double petrolEmission = petrolConsumption * PETROL_EMISSION_FACTOR;
+        double lpgEmission = lpgConsumption * LPG_EMISSION_FACTOR;
+
+        // Total carbon footprint
+        double totalEmission = electricityEmission + petrolEmission + lpgEmission;
+
+        // Convert total emission to tons of CO2
+        double totalEmissionTons = totalEmission / 1000;
+
+        System.out.println("\nCarbon Footprint Breakdown:");
+        System.out.println("Electricity Emission: " + electricityEmission + " kg CO2");
+        System.out.println("Petrol Emission: " + petrolEmission + " kg CO2");
+        System.out.println("LPG Emission: " + lpgEmission + " kg CO2");
+        System.out.println("-".repeat(30));
+        System.out.println("Total Carbon Footprint: " + totalEmission + " kg CO2");
+        System.out.println("Total Carbon Footprint (in tons): " + totalEmissionTons + " tons CO2");
+
+        scanner.close();
+    }
+}
